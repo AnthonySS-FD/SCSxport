@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Empresa SAC</title>
+    
+    
+<style>
+
+:root {
+    --primary-color: #DAA520;
+    /* Gold */
+    --secondary-color: #2C3E50;
+    /* Dark blue */
+    --light-color: #F5F5F5;
+    /* Light gray */
+    --dark-color: #1A252F;
+    /* Darker blue */
+    --text-color: #333;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top-bar {
+display: flex;
+justify-content:center;
+align-items:center;
+background-color: #2d2d31;
+padding: 10px 20px;
+border-bottom: 1px solid #abadaf;
+font-family: Arial, sans-serif;
+border-radius: 2px;
+}
+        header {
+    background: var(--dark-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    
+}
+
+header .logotipo {
+    height: 130px;
+    width: 120px;
+    margin: 0 50px 10px;
+}
+
+header .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+header .social-icons a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color var(--transition-speed);
+}
+
+header .social-icons a:hover {
+    color: var(--primary-color);
+    
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: var(--secondary-color);
+    padding: 28px 5px;
+    border-top: 50px;
+    border-radius: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.social-icons a {
+margin: 0 10px;
+display: inline-block;
+}
+
+.social-icons img {
+width: 24px;
+height: 24px;
+
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-link {
+    width: 26px;
+    height: 26px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+   
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+
+
+.language-dropdown {
+position: relative;
+margin-top: 0px;
+margin-left: 20px;
+}
+
+.dropdown-button {
+background-color: var(--transition-speed);
+padding: 5px 10px;
+cursor: pointer;
+font-size: 14px;
+border-radius: 4px;
+color: white;
+margin-right: 40px;
+
+}
+
+.dropdown-menu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: #ffffff;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+z-index: 1000;
+padding: 10px 0px;
+}
+
+.dropdown-menu a {
+display: block;
+padding: 10px;
+text-decoration: none;
+color: #333;
+font-size: 14px;
+border-radius: 10px;
+}
+
+.dropdown-menu a:hover {
+background-color: #f0f0f0;
+}
+
+.language-dropdown:hover .dropdown-menu {
+display: block;
+}
+
+
+
+
+
+
+
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 190px auto;
+            height: 720px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-section {
+            padding: 10px;
+        }
+
+        .form-section h2 {
+            margin-bottom: 10px;
+            color: #1e3c72;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #1e3c72;
+            box-shadow: 0 0 8px rgba(30, 60, 114, 0.2);
+            outline: none;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #1e3c72;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+            
+
+        }
+
+        .submit-btn:hover {
+            background: #3562af;
+            transform: scale(1.05);
+        }
+
+        .image-section {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f4f4f9;
+            border-radius: 15px;
+            box-shadow:  0 10px 10px rgba(0, 0, 0, 0.1);
+            height: 95%;
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel img {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+            width: 100%;  /* Ajusta el ancho al contenedor */
+            height: 100%; /* Ajusta la altura al contenedor */
+            object-fit: cover; /* Recorta la imagen y la centra */
+        }
+
+        @keyframes slide {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-100%); }
+    40% { transform: translateX(-200%); }
+    60% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+        .carousel-track {
+            display: flex;
+            animation: slide 40s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ffd700;
+        }
+
+        .footer {
+            background-color: #222; /* Color de fondo */
+            padding: 20px;
+            text-align: center;
+        }
+
+        
+        footer p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo" ><a href="/Proyecto/index.html"><img src="/Proyecto/Recurso-2scs-1.png" alt="logo" class="logotipo"></a></div>
+       
+        </div>
+        <nav>
+            
+            <a href="/Proyecto/index.html">Inicio</a>
+            <a href="/Proyecto/nosotros.html">Nosotros</a>
+            <a href="/Proyecto/a.html">Productos</a>
+            <a href="/Proyecto/contacto.html">Contacto</a>
+            <div class="social-icons">
+                <a class="social-link" href="https://www.linkedin.com/company/scs-export-sac/" target="_blank" style="background-image: url('/Proyecto/linkedin.png');"></a>
+                    <a class="social-link" href="https://www.facebook.com/scsexport/" target="_blank" style="background-image: url('/Proyecto/facebook\ \(3\).png');"></a>
+                    <a class="social-link" href="https://twitter.com/tuempresa" target="_blank" style="background-image: url('/Proyecto/instagram (1).png');" style="color: #ffffff;"></a>
+                    
+            </div>
+            <div class="language-dropdown">
+                <button class="dropdown-button">Idioma</button>
+                <div class="dropdown-menu">
+                    <a href="?lang=es">Español</a>
+                    <a href="?lang=en">English</a>
+                    <a href="?lang=fr">Français</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <div class="contact-container">
+        <div class="form-section">
+            <h2>Contacto</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Empresa</label>
+                    <input type="text" id="company" name="company" placeholder="Ingresa el nombre de tu empresa" required>
+                </div>
+                <div class="form-group">
+                    <label for="ruc">RUC</label>
+                    <input type="text" id="ruc" name="ruc" placeholder="Ingresa el RUC de tu empresa" pattern="\d{11}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Ingresa tu número de teléfono" pattern="\d{9}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </form>
+        </div>
+        <div class="image-section">
+            <div class="carousel">
+                <div class="carousel-track">
+                    <img src="https://scsexport.com/wp-content/uploads/elementor/thumbs/oficinas-scsexport-qi9bf60v2ximm223zknsb8c1c78u7nxzdihyr57ypc.png" alt="Imagen 1">
+                    <img src="https://scsexport.com/wp-content/uploads/2024/01/dia3.png" alt="Imagen 2">
+                    <img src="https://scsexport.com/wp-content/uploads/2024/01/image-2.jpg" alt="Imagen 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer">
+        <div class="social-links">
+            <a class="social-link" href="https://www.linkedin.com/company/alicorp-saa/?originalsubdomain=pe" target="_blank" style="background-image: url('/Proyecto/Footer_linkedin_26x26.png');"></a>
+            <a class="social-link" href="https://www.facebook.com/tuempresa" target="_blank" style="background-image: url('/Proyecto/Footer_facebook_26x26.png');"></a>
+            <a class="social-link" href="https://twitter.com/tuempresa" target="_blank" style="background-image: url('/Footer_linkedin_26x26.png');"></a>
+            <!-- Añadir más enlaces de redes sociales según sea necesario -->
+        </div>
+        <p>&copy; 2024 Exportaciones Oro | Todos los derechos reservados.</p>
+    </footer>
+
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Formulario enviado exitosamente');
+        });
+    </script>
+</body>
+</html>

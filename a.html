@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Empresa SAC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        :root {
+            --primary-color: #DAA520;
+            /* Gold */
+            --secondary-color: #2C3E50;
+            /* Dark blue */
+            --light-color: #F5F5F5;
+            /* Light gray */
+            --dark-color: #1A252F;
+            /* Darker blue */
+            --text-color: #333;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: var(--dark-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            height: auto;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+
+        }
+
+        header .logotipo {
+            height: 130px;
+            width: 120px;
+            margin: 0 50px 10px;
+        }
+
+        header .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        header .social-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color var(--transition-speed);
+        }
+
+        header .social-icons a:hover {
+            color: var(--primary-color);
+
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: var(--secondary-color);
+            padding: 28px 5px;
+            border-top: 50px;
+            border-radius: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 600;
+            transition: color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 110px 20px;
+            background: linear-gradient(to top, #005f73, #94d2bd);
+            color: white;
+            margin: 180px auto 0;
+            border-radius: 20px;
+            width: 80%;
+            align-items: center;
+            background-image: url(/Proyecto/broken-chocolate-cocoa-beans-bowl-rustic-backdrop.jpg);
+            background-size: cover; /* La imagen cubre todo el contenedor */
+            background-position: center; /* Centra la imagen */
+            opacity: 20%;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 50px 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-info {
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #005f73;
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            background: #005f73;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+
+        .modal-close:hover {
+            background: #94d2bd;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .social-link {
+            width: 26px;
+            height: 26px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+
+        .top-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2d2d31;
+            padding: 10px 20px;
+            border-bottom: 1px solid #abadaf;
+            font-family: Arial, sans-serif;
+            border-radius: 2px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+
+        }
+
+        .language-dropdown {
+            position: relative;
+            margin-top: 0px;
+            margin-left: 20px;
+        }
+
+        .dropdown-button {
+            background-color: var(--transition-speed);
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            color: white;
+            margin-right: 40px;
+
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px 0px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .language-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #ffd700;
+        }
+
+        footer p {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background-color: #222;
+            /* Color de fondo */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 26px;
+            height: 26px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+
+
+
+
+
+
+
+        .carrousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+            /* Bordes redondeados para un look más moderno */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            /* Sombra sutil */
+        }
+
+        /* Contenedor de los productos (imágenes) */
+        .productos {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            /* Transición suave */
+        }
+
+        /* Estilo de cada producto */
+        .producto {
+            min-width: 100%;
+            transition: transform 0.3s ease;
+            /* Transición suave */
+            border-radius: 15px;
+            /* Bordes redondeados para las imágenes */
+            overflow: hidden;
+        }
+
+        .producto img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+            /* Asegura que las imágenes no se deformen */
+            transition: transform 0.3s ease;
+        }
+
+        /* Efecto de hover para las imágenes */
+        .producto:hover img {
+            transform: scale(1.05);
+            /* Escala la imagen ligeramente al hacer hover */
+        }
+
+        /* Estilo de las flechas de navegación */
+        .flechas {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+            /* Asegura que las flechas estén por encima del contenido */
+        }
+
+        .flechas button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+            /* Hace las flechas redondas */
+            transition: background-color 0.3s ease;
+            /* Transición al pasar el mouse */
+        }
+
+        .flechas button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Efecto hover */
+        }
+
+        /* Opcional: Añadir un fondo oscuro para las flechas al hacer hover */
+        .flechas button:focus {
+            outline: none;
+        }
+
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+            cursor: pointer;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo"><a href="/Proyecto/index.html"><img src="/Proyecto/Recurso-2scs-1.png" alt="logo"
+                    class="logotipo"></a></div>
+
+        </div>
+        <nav>
+
+            <a href="/Proyecto/index.html">Inicio</a>
+            <a href="/Proyecto/nosotros.html">Nosotros</a>
+            <a href="/Proyecto/a.html">Productos</a>
+            <a href="/Proyecto/contacto.html">Contacto</a>
+            <div class="social-icons">
+                <a class="social-link" href="https://www.linkedin.com/company/scs-export-sac/"
+                    target="_blank" style="background-image: url('/Proyecto/linkedin.png');"></a>
+                <a class="social-link" href="https://www.facebook.com/scsexport/" target="_blank"
+                    style="background-image: url('/Proyecto/facebook\ \(3\).png');"></a>
+                <a class="social-link" href="https://twitter.com/tuempresa" target="_blank"
+                    style="background-image: url('/Proyecto/instagram (1).png');" style="color: #ffffff;"></a>
+
+            </div>
+            <div class="language-dropdown">
+                <button class="dropdown-button">Idioma</button>
+                <div class="dropdown-menu">
+                    <a href="?lang=es">Español</a>
+                    <a href="?lang=en">English</a>
+                    <a href="?lang=fr">Français</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero fade-in">
+        <h2>Nuestros Productos</h2>
+        <p>Descubre la variedad de productos que exportamos al mundo.</p>
+    </section>
+
+    <section id="productos" class="gallery fade-in">
+        <div class="gallery-item" data-title="Cacao Premium" data-description="Calidad exportación a Europa."
+            data-image="https://scsexport.com/wp-content/uploads/2024/01/CAFE_VERDE.jpg">
+            <img src="https://scsexport.com/wp-content/uploads/2024/01/CAFE_VERDE.jpg" alt="Cacao Premium">
+            <div class="gallery-info">
+                <h3>Cacao Premium</h3>
+                <p>Calidad exportación a Europa.</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-title="Chocolate Orgánico" data-description="100% natural y sin azúcar añadida."
+            data-image="https://scsexport.com/wp-content/uploads/2023/06/cacao-1024x538-1.png">
+            <img src="https://scsexport.com/wp-content/uploads/2023/06/cacao-1024x538-1.png" alt="Chocolate Orgánico">
+            <div class="gallery-info">
+                <h3>Chocolate Orgánico</h3>
+                <p>100% natural y sin azúcar añadida.</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-title="Granos de Cacao" data-description="Directo desde Perú al mundo."
+            data-image="https://scsexport.com/wp-content/uploads/2024/07/PlatanosVerdesBarranquilla-e1722441762871-1024x560.jpg">
+            <img src="https://scsexport.com/wp-content/uploads/2024/07/PlatanosVerdesBarranquilla-e1722441762871-1024x560.jpg"
+                alt="Granos de Cacao">
+            <div class="gallery-info">
+                <h3>Granos de Cacao</h3>
+                <p>Directo desde Perú al mundo.</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-title="Cacao Premium" data-description="Calidad exportación a Europa."
+            data-image="https://scsexport.com/wp-content/uploads/2024/01/istockphoto-517870222-612x612-1.jpg">
+            <img src="https://scsexport.com/wp-content/uploads/2024/01/istockphoto-517870222-612x612-1.jpg" alt="Cacao Premium">
+            <div class="gallery-info">
+                <h3>Cacao Premium</h3>
+                <p>Calidad exportación a Europa.</p>
+            </div>
+        </div>
+        <div class="gallery-item" data-title="Cacao Premium" data-description="Calidad exportación a Europa."
+            data-image="https://scsexport.com/wp-content/uploads/2024/07/comercio-exterior-311017-101630.jpg">
+            <img src="https://scsexport.com/wp-content/uploads/2024/07/comercio-exterior-311017-101630.jpg" alt="Cacao Premium">
+            <div class="gallery-info">
+                <h3>Cacao Premium</h3>
+                <p>Calidad exportación a Europa.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade-in" id="product-modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Título del Producto</h3>
+            <img id="modal-image" src="" alt="Imagen del Producto"
+                style="width: 100%; border-radius: 10px; margin-bottom: 10px;">
+            <p id="modal-description">Descripción del Producto</p>
+            <button class="modal-close">Cerrar</button>
+        </div>
+    </div>
+
+
+
+    <div class="carrousel fade-in">
+        <div class="productos">
+            <div class="producto">
+                <img src="/Proyecto/rb_25554.png" alt="Producto 1">
+            </div>
+            <div class="producto">
+                <img src="/Proyecto/rb_25554.png" alt="Producto 2">
+            </div>
+            <div class="producto">
+                <img src="/Proyecto/rb_25554.png" alt="Producto 3">
+            </div>
+        </div>
+
+        <div class="flechas">
+            <button id="prev">&#10094;</button> <!-- Flecha izquierda -->
+            <button id="next">&#10095;</button> <!-- Flecha derecha -->
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="social-links">
+            <a class="social-link" href="https://www.linkedin.com/company/alicorp-saa/?originalsubdomain=pe"
+                target="_blank" style="background-image: url('/Proyecto/Footer_linkedin_26x26.png');"></a>
+            <a class="social-link" href="https://www.facebook.com/tuempresa" target="_blank"
+                style="background-image: url('/Proyecto/Footer_facebook_26x26.png');"></a>
+            <a class="social-link" href="https://twitter.com/tuempresa" target="_blank"
+                style="background-image: url('/Footer_linkedin_26x26.png');"></a>
+            <!-- Añadir más enlaces de redes sociales según sea necesario -->
+        </div>
+        <p>&copy; 2024 Exportaciones Oro | Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const modal = document.getElementById('product-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.modal-close');
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                modalTitle.innerText = item.dataset.title;
+                modalDescription.innerText = item.dataset.description;
+                modalImage.src = item.dataset.image;
+                modal.classList.add('active');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+
+
+
+        let currentIndex = 0;
+        const productos = document.querySelector('.productos');
+        const totalProductos = document.querySelectorAll('.producto').length;
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (currentIndex < totalProductos - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            productos.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalProductos - 1;
+            }
+            productos.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+
+
+
+        // Intersection Observer for fade-in effects
+        const fadeInElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        fadeInElements.forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
